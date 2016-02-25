@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "Github Pages Apex Domain Setup"
+date:   2016-02-25 15:49:38 -0500
+categories: github jekyll dns
+---
 # My first thingey!
 
 Here's where you point your DNS' A record file if you want your snazzy custom domain name to point to a github pages project. 
