@@ -17,3 +17,7 @@ github_username:  irstacks
 
 # Build settings
 markdown: kramdown
+
+excerpt_separator: 
+
+
