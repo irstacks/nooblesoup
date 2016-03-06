@@ -11,13 +11,12 @@ These instructions will be from the ground up. If this ain't your first reposito
 
 Now you've got two references to the same project, one listed under `someoneelse/coolproject`, and a new one that all yours at `madgorillascientist/coolproject`... or whatever your name is. And right now, they're the same. And they're both not on your computer yet. Let's fix that.
 
-3. Go to your Terminal, `cd` and `mkdir` your way to the place where you'd like to keep this project (I keep mine, speaking in absolute terms, at /Users/ia/dev/coolproject.) 
-
-You're there? OK. Now, you may be thinking, "Clone! Clones!". And yep, you can do that. If you want, clone away. You won't break anything. But what I'll suggest is to start with a pull. Why? Because it's a little bit more transparent/thorough a way to see what's going on. 
+3. Go to your Terminal, `cd` and `mkdir` your way to the place where you'd like to keep this project (I keep mine, speaking in absolute terms, at /Users/ia/dev/coolproject.) You're there? OK. Now, you may be thinking, "Clone! Clones!". And yep, you can do that. If you want, clone away. You won't break anything. But what I'll suggest is to start with a pull. Why? Because it's a little bit more transparent/thorough a way to see what's going on. 
 
 4. Still in your special project directory place? Good. Then we're going to make a git repository of your empty folder and connect it with these two repositories in outer space. 
 
 This'll make that directory you're in officially git-ed... got it? 
+
 ```
 $ git init 
 ```
@@ -25,10 +24,12 @@ $ git init
 
 ### Outer space
 Now you've got to tell git that there are are __remotes__ that you want to this project to talk to. Remotes, with an s. The first of these remotes is going to be someoneelse/coolproject, the official master plan to rule them all. I use the convention of calling this repository 'upstream'. The second will be your own copy of it, which is yours. This one I call 'origin'.
+
 ```
 $ git remote add upstream https://github.com/someoneelse/coolproject.git
 $ git remote add origin https://github.com/madgorillascientist/coolproject.git
 ```
+
 If this didn't work it probably because Github doesn't know that that computer is yours. You'll want to do some googling about adding a public key to your Github profile. If it DID work, awesome. Onwards. 
 
 Now we're going to actually _get_ the code from the remote repos onto your machine so you can hack away at your leisure. 
@@ -39,9 +40,11 @@ Getting the remote via 'git pull' actually does two commands at the same time:
 2. 'git merge', which, well, merges the two together. 
 
 Right now, that's going to fetch everything you don't have, which is everything, and merge it into, well, nothing. Which is OK.  
+
 ```
 $ git pull upstream master
 ```
+
 And for a little science project, you can run `$ git pull origin master` and see what happens.
 
 Now take a peek at your local project directory; you should have it all there in working order. 
@@ -51,6 +54,7 @@ Now take a peek at your local project directory; you should have it all there in
 Just hold on one minute, hotshot, before you start hacking away. There's just one thing left to do. Branch! A little branching never hurt anyone, and it has saved the lives and destinies of many a soul. 
 
 This'll create a new branch called 'madgorillascientist-exploratory-mission' and put your HEAD on it. What's a HEAD? A HEAD is where your head's at. Where your gitty little eyes are at. 
+
 ```
 $ git checkout -b madgorillascientist-exploratory-mission
 ```
@@ -60,7 +64,8 @@ Alright - go for it! Type stuff! Make weird improvements! Make a comment on the 
 Now, just cuz, let's try putting those changes in outer space. 
 
 This adds everything that has been modified to _the stage_, as I call it. Well, to _staging_, as they say. (Note that instead of a '.', which adds everything that has changed, you can instead use 'thatonefile.md' or whatever, and stage on a per-file basis. For now, '.' will be just fine. 
-```shell
+
+```
 $ git add . 
 $ git commit -m "Arooo000oo0ooooo00oooooo0ooooooooo" # A good first commit message is important.  
 ```
@@ -69,6 +74,7 @@ $ git commit -m "Arooo000oo0ooooo00oooooo0ooooooooo" # A good first commit messa
 ### Push it, push it good! Ahhh...
 
 Alright, you're staged and committed and you've officially dun work on the repo. Outer space time. Push them changes to your 'origin'. This is _your_ outer space version of the repo.
+
 ```
 $ git push origin madgorillascientist-exploratory-mission
 ```
@@ -85,6 +91,7 @@ So we accept the request. Let's say it's been a particularly busy day and your r
 You've got options my friend. If you're feeling bold (and I often am), and fast (always inclined), then you can run another `$ git pull upstream master`, which'll get and commit all the upstream stuff you don't already have. If you're feeling a little tentative, maybe because you've been working on some _even more_ stuff, then break that `pull` down into littler pieces by running `$ git fetch`, which grabs everything you don't have (remember: it's going to come in from the upstream:master branch and into your local:master branch; not necessarily the branch you're working on) so you can look at it and make sure it doesn't fuck up what you've got going in the meantime - and, if it all checks out and looks like it won't break your junk, then you can `add` it, `commit` it, and finally `merge` it into your branch.  
 
 A la...
+
 ```
 # Fetch the big dog.
 $ git fetch upstream master
