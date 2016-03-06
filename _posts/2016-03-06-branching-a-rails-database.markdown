@@ -52,7 +52,8 @@ $ rake db:setup
 ---
 
 ## And here's another, more comprehensive way to do it.
-If you're using 
+
+This works great if you're using MySQL or Postres.
 
 > https://github.com/room118solutions/git-rails-database-branch-hook
 
