@@ -2,8 +2,7 @@
 title: Working with git remotes
 layout: post
 ---
-
-These instructions will be from the ground up. If this ain't your first repository rodeo, well, then, just go ahead and do your thang! 
+Instructions from the ground up for pushing and pulling and all that jazz.
 
 ### Stick a fork in it!
 1. Sign in to Github.

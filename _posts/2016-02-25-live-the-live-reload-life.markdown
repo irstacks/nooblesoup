@@ -4,7 +4,7 @@ layout: post
 date: 2016-02-25 20:30:28
 comments: true
 ---
-Live-reload. Once you go... you never go back.
+It is better than dead reload. 
 
 > I typed a bunch of stuff here, but really[ Matt Brictson does a far better job explaining and implementing it.](https://mattbrictson.com/lightning-fast-sass-reloading-in-rails) I use his way now. 
 

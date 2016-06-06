@@ -2,6 +2,8 @@
 title: Branching a rails database
 layout: post
 ---
+Version control your database, too. 
+
 ## Branches are awesome. 
 They can provide a framework for focusing and organizing your development efforts, and, best of all, they can save your ass if you mess stuff up. Which you should. And will.
 

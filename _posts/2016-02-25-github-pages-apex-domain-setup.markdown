@@ -6,6 +6,9 @@ comments: true
 categories: beginner blogs
 tags: github jekyll domain
 ---
+Mostly notes for myself.
+
+
 Here's where you point your DNS' A record file if you want your snazzy custom domain name to point to a github pages project. 
 
 [192.30.252.153, 192.30.252.154]
