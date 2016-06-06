@@ -150,6 +150,9 @@ Creating aliases this way lets you cut out typing `git` everytime you want to us
 
 Functions are good for stuff that needs arguments, like inputting a certain file to do something to, a number of times to do something, or an optional way to do something. Aliases are good for one-to-one-ers. 
 
+----
+
 <a name="bash">1</a>: Footnote content goes here Nope, I have no idea why it's called that. 
+
 <a name='rcpro'>2</a>: Not sure exactly what the difference between these two is. 
 
