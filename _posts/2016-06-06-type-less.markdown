@@ -6,7 +6,6 @@ comments: true
 ---
 Get using aliases for git.
 
-### So you're going to do some coding
 
 Coding is typing. A lot of typing. A lot of typing the same stuff over and over and over and over. At some point it makes sense to type less. 
 
