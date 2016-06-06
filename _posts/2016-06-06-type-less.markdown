@@ -1,0 +1,155 @@
+---
+title: Type less
+layout: post
+date: 2016-06-06 06:30:28
+comments: true
+---
+
+### So you're going to do some coding
+
+Coding is typing. A lot of typing. A lot of typing the same stuff over and over and over and over. At some point it makes sense to type less. 
+
+### Git used to it.
+
+One of the things you'll type over and over and over is stuff for your version control. Version control isn't only _version control_. It's also for working collaboratively, backing up your work, deploying, and organizing. (Git is not the only kind of version control, but its the one I have used exclusively.)
+
+The first 587 times typing out `git status` is great, but then it becomes about time in a coder's life to snip 300 milliseconds out of that movement, and instead type `gs`.  
+
+Aliases let you make up any name you want for any existing command (or set of commands). You can also use (often shortish) functions to accomplish the same thing. When we're talking about `git` aliases, there are a couple of ways to accomplish the same goal; which here is shortening `git status` to `gs`. 
+
+Option number one is by tinkering with your `.gitconfig` file. `.gitconfig` is an example of _dotfile_, the use of which extends by convention way beyond git, like
+
+> `.editorconfig`, `.eslint`, `.gemrc`, `.bashrc`, `.vim`, `.atom`, ... the list goes on
+
+So, `.gitconfig` (for the time begin). You've got git installed as a program on your computer. _There is not only one `.gitconfig` file on your computer._ For every git repository you initialize, you'll create with that a `.gitconfig` file tucked away in the understated `.git/` directory. When you add a remote origin, for example, that address is stored in that repository's `.gitconfig`. Now, you can also have a _global `.gitconfig` file_, which would in all likelihood live in your home (aka `~` aka `/Users/you/`) directory. You can use the global `.gitconfig` to make and adjust settings that will be carried over into all of your user's git repositories. 
+
+This is what my current global `.gitconfig` looks like. 
+
+{% highlight bash %}
+[user]
+    name = Mr. Is
+    email = isaac.sindicat@gmail.com
+[core]
+    excludesfile = /Users/ia/.gitignore_global
+[push]
+    default = current
+[pull]
+    default = current
+[merge]
+    tool = kdiff3
+[alias]
+    # Undo all changes since last commit and leave no evidence.
+    wipe = !git stash && git stash drop
+    # Undo your last commit as though you had never made it.
+    uncommit = reset --soft HEAD~
+    save = !git add -A && git commit -m 'SAVE'
+  
+  # Could use this in conjunction with uncommit to store intermediate changes without stashing.
+    wip = commit -am "WIP"
+    # Not that useful now that [push]default is set to current.
+  pushit = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\""
+
+    # Branchables.
+    go = checkout -B
+
+    # Remotes.
+    remotes = remote -v
+    
+    # Diffables.
+    # with stats.
+  diffstats = diff --stat -r
+    # show changes.
+    changes = diff --name-status -r
+
+    ## Loggers
+    # Short and sweet.
+    brief = !git --no-pager log --oneline -n 10
+
+    # As bespoke.
+    recent-branches = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname)' refs/heads refs/remotes
+
+    # Recent branch action by last commit per. I think.
+    recently = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+    # List files that were changed.
+    # I don't use these nearly as much as $ gl and $ glp aliases.
+    l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    lg = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    # Flow da chart.
+    ll = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%an%d%Creset %Cgreen(%cr)%Creset %s' --date=relative
+{% endhighlight %}
+
+When I type, for example, `git remotes`, git actually interprets my command as `git remote -v`, `git changes` does `git diff --name-status -r`, and so forth; so yeah, the things before the `=` in actual use are prefixed with `git`. 
+
+_Wait, but there's no alias for `git status`!_ Aha. Thank you, conveniently leading into Way Number 2&trade; to make up your own aliases.
+
+When you type `git status` you're typing into the shell; called __bash__ - Bourne Again Shell[1] - if you're on a Mac, like me. Among the many awesome things you can customize bash to do are git things. 
+
+There are _tons of ways_ to customize your bash experience, from mostly simple modifying your basic standard `.bash_profile` or `.bashrc`[2], to using a big ol' [dotfile system](https://github.com/holman/dotfiles) which essentially uses those two files to import a whole lot of other files, allowing you to put just your aliases in a file somewhere called `git_aliases.sh` or whatever. 
+
+Here's what my git bash aliases look like
+
+{% highlight bash %}
+alias gg='git grep'
+
+alias ga="git add"
+alias gc="git commit -m"
+
+alias gitit='git add -A && git commit -m'
+
+alias gs='git status -sb'
+
+function gl() {
+  git log --all --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+}
+alias gll='git --no-pager log --oneline --decorate --color --graph'
+# Accepts -<number> arg to limit number shown.
+alias glg='git --no-pager log --pretty=format:"%cr [%h] %s" --graph --stat'
+
+alias gpo="git push origin"
+alias gpu="git push upstream"
+
+alias gpullo="git pull origin"
+alias gpullu="git pull upstream"
+
+alias gf="git fetch"
+
+# Checkout branch.
+alias gco="git checkout"
+# Checkout new branch.
+alias gcb="git checkout -b"
+# Delete branch.
+alias gbd="git branch -D" # definitely delete. no fucking around. 
+
+# Merge, rebase.
+alias gm="git merge"
+alias greb="git rebase"
+
+# https://github.com/paulmillr/dotfiles/blob/master/home/.zshrc.sh
+function cherry() {
+  args=$@
+  for commit in "$@"; do
+    echo $commit
+    git cherry-pick -n "$commit"
+  done
+}
+
+# http://stackoverflow.com/questions/7539382/how-can-i-deploy-push-only-a-subdirectory-of-my-git-repo-to-heroku
+function gitpushsub() {
+    # git subtree push --prefix output heroku master
+    git subtree push --prefix "$3" "$1" "$2"
+    # ie gitpushsub heroku master spoop-web/
+}
+function gitpushsubforce() {
+    # git push heroku `git subtree split --prefix output master`:master --force
+    git push "$1" `git subtree split --prefix "$3" "$2"`:master --force
+}
+{% endhighlight %}
+
+Creating aliases this way lets you cut out typing `git` everytime you want to use git. I'm sure you've noticed that you can use the bash `alias` command to do that __or__ set up a `function`. 
+
+Functions are good for stuff that needs arguments, like inputting a certain file to do something to, a number of times to do something, or an optional way to do something. Aliases are good for one-to-one-ers. 
+
+[1] Nope, I have no idea why it's called that. 
+[2] Not sure exactly what the difference between these two is. 
+

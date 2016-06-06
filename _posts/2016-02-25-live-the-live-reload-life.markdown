@@ -6,6 +6,8 @@ comments: true
 ---
 Live-reload. Once you go... you never go back.
 
+> I typed a bunch of stuff here, but really[ Matt Brictson does a far better job explaining and implementing it.](https://mattbrictson.com/lightning-fast-sass-reloading-in-rails) I use his way now. 
+
 ### ? 
 So you've got the site your building served locally on, say, port 3000, and you can visit localhost:3000 and see it. Yep. 
 
