@@ -152,7 +152,7 @@ Functions are good for stuff that needs arguments, like inputting a certain file
 
 ----
 
-<a name="bash">1</a>: Footnote content goes here Nope, I have no idea why it's called that. 
+<a name="bash">1</a>: Nope, I have no idea why it's called that. 
 
 <a name='rcpro'>2</a>: Not sure exactly what the difference between these two is. 
 
