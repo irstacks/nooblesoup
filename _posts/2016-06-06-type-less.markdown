@@ -83,9 +83,9 @@ When I type, for example, `git remotes`, git actually interprets my command as `
 
 _Wait, but there's no alias for `git status`!_ Aha. Thank you, conveniently leading into Way Number 2&trade; to make up your own aliases.
 
-When you type `git status` you're typing into the shell; called __bash__ - Bourne Again Shell[1] - if you're on a Mac, like me. Among the many awesome things you can customize bash to do are git things. 
+When you type `git status` you're typing into the shell; called __bash__ - Bourne Again Shell[1][] - if you're on a Mac, like me. Among the many awesome things you can customize bash to do are git things. 
 
-There are _tons of ways_ to customize your bash experience, from mostly simple modifying your basic standard `.bash_profile` or `.bashrc`[2], to using a big ol' [dotfile system](https://github.com/holman/dotfiles) which essentially uses those two files to import a whole lot of other files, allowing you to put just your aliases in a file somewhere called `git_aliases.sh` or whatever. 
+There are _tons of ways_ to customize your bash experience, from mostly simple modifying your basic standard `.bash_profile` or `.bashrc`[2][], to using a big ol' [dotfile system](https://github.com/holman/dotfiles) which essentially uses those two files to import a whole lot of other files, allowing you to put just your aliases in a file somewhere called `git_aliases.sh` or whatever. 
 
 Here's what my git bash aliases look like
 
@@ -150,6 +150,6 @@ Creating aliases this way lets you cut out typing `git` everytime you want to us
 
 Functions are good for stuff that needs arguments, like inputting a certain file to do something to, a number of times to do something, or an optional way to do something. Aliases are good for one-to-one-ers. 
 
-[1] Nope, I have no idea why it's called that. 
-[2] Not sure exactly what the difference between these two is. 
+[1]: Nope, I have no idea why it's called that. 
+[2]: Not sure exactly what the difference between these two is. 
 
